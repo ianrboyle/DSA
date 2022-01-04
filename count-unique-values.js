@@ -1,9 +1,11 @@
 // implement function that accepts a sorted array, counts the unique values in the array
 
 function countUniqueValues(arr) {
+  if (arr.length === 0) {
+    return 0;
+  }
   let leftIndex = 0;
   let rightIndex = 1;
-  let uniques = 0;
   while (rightIndex < arr.length) {
     //compare left and right index
     // if they are not equal, add 1 to uniques
@@ -19,4 +21,4 @@ function countUniqueValues(arr) {
   return leftIndex + 1;
 }
 
-console.log(countUniqueValues([0, 1, 1, 2, 2, 4, 5, 5, 6]));
+console.log(countUniqueValues([]));
