@@ -14,8 +14,6 @@ function anagram(str1, str2) {
   for (let char of str2) {
     freqCounter2[char] = (freqCounter2[char] || 0) + 1;
   }
-  console.log(freqCounter1);
-  console.log(freqCounter2);
   for (let key in freqCounter1) {
     if (!(key in freqCounter2)) {
       return false;
@@ -29,3 +27,31 @@ function anagram(str1, str2) {
 }
 
 console.log(anagram("racecard", "cadrrace"));
+
+function validAnagram(first, second) {
+  if (first.length !== second.length) {
+    return false;
+  }
+
+  const lookup = {};
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    // if letter exists, increment, otherwise set to 1
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+  }
+
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    // if cant find letter or letter is zero, than not an anagram
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
+
+  return true;
+}
+
+console.log(validAnagram("hllp", "lelh"));
