@@ -3,7 +3,9 @@
 function maxSubArray(arr, n) {
   let max = 0;
   let temp = 0;
-  if (arr.length < n) return null;
+  if (arr.length < n) {
+    return null;
+  }
   for (let j = 0; j < n; j++) {
     max += arr[j];
   }
