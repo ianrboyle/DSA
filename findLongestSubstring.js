@@ -8,23 +8,19 @@ function findLongestSubstring(str) {
   if (str.length === 1) {
     return 1;
   }
-  let counter = 0;
-  let temp = 0;
-  let j = 1;
+  let longest = 0;
+  let seen = {};
+  let start = 0;
   for (let i = 0; i < str.length; i++) {
-    if (str[i] !== str[i + 1]) {
-      counter += 1;
+    if (seen[str[i]]) {
+      start = Math.max(start, seen[str[i]]);
     }
-    // } else {
-    //   if (temp < counter) {
-    //     temp = counter;
-    //   }
-    //   counter = 0;
-    //   j = i + 1;
-    // }
+
+    longest = Math.max(longest, i - start + 1);
+    seen[str[i]] = i + 1;
   }
-  console.log(temp, counter);
+  return longest;
 }
 
-findLongestSubstring("rithmschool");
-findLongestSubstring("thisisawesome");
+console.log(findLongestSubstring("rithmschool"));
+console.log(findLongestSubstring("thisisawesome"));
