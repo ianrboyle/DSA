@@ -7,23 +7,24 @@
 //sliding window
 
 function minSubArrayLen(arr, n) {
-  // if (arr.length < n) {
-  //   return null;
-  // }
-  let j = 1;
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum = arr[i];
-    if (arr[i] === n) {
-      return arr[i];
-    } else if (sum < n) {
-      sum += arr[j];
-      j += 1;
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLength = Infinity;
+
+  while (start < arr.length) {
+    if (total < n && arr.length) {
+      total += arr[end];
+      end++;
+    } else if (total >= n) {
+      minLength = Math.min(minLength, end - start);
+      total -= arr[start];
+      start++;
     } else {
-      console.log(arr[i], arr[j]);
+      break;
     }
   }
-  return sum;
+  return minLength === Infinity ? 0 : minLength;
 }
 
 // [2, 3, 1, 2, 4, 3], 7;
